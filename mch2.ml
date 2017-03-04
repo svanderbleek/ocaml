@@ -81,3 +81,19 @@ let unleave (Cons (x, xs)) =
   let Cons (y, ys) = xs () in
   (Cons (x, fun () -> skip (xs ()))
   ,Cons (y, fun () -> skip (ys ())))
+
+let alphabase =
+  int_of_char 'A'
+
+let mkalpha n =
+  let c = char_of_int (alphabase + n) in
+  String.make 1 c
+
+let rec alpha n =
+  let c = mkalpha (n mod 26) in
+  if n < 26
+  then c
+  else alpha (n / 26 - 1) ^ c
+
+let alphas =
+  lmap alpha (lseq 0)
