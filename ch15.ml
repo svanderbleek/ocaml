@@ -58,9 +58,9 @@ let rec cntns_ s si x xi n =
       if xi < String.length x then
         let si' = String.index_from s si (String.get x xi) in
         if xi = 0 then cntns_ s si' x 1 n else
-          if si' = si + 1
-          then cntns_ s si' x (xi+1) n
-          else cntns_ s (si'-xi) x 0 n
+        if si' = si + 1
+        then cntns_ s si' x (xi+1) n
+        else cntns_ s (si'-xi) x 0 n
       else cntns_ s si x 0 (n+1)
     else n
   with Not_found -> n

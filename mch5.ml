@@ -22,13 +22,13 @@ let input_bits_of_input i =
 
 let rec getbit b =
   if b.bit = 0 then begin
-    b.byte <- int_of_char (b.input.input_char ());
-    b.bit <- 128;
-    getbit b
+  b.byte <- int_of_char (b.input.input_char ());
+  b.bit <- 128;
+  getbit b
   end else
-    let n = b.byte land b.bit in
-    b.bit <- b.bit / 2;
-    if n > 0 then 1 else 0
+  let n = b.byte land b.bit in
+  b.bit <- b.bit / 2;
+  if n > 0 then 1 else 0
 
 let align b =
   b.bit <- 0
@@ -51,7 +51,7 @@ let getval_32 b =
   for o = 31 downto 0 do
     let n = getbit b in
     if n = 1 then
-      i := Int32.logor !i (Int32.shift_left Int32.one o)
+    i := Int32.logor !i (Int32.shift_left Int32.one o)
   done;
   !i
 
@@ -123,11 +123,11 @@ let flush o =
 
 let rec putbit o b =
   if o.bit = (-1) then begin
-    flush o;
-    putbit o b
+  flush o;
+  putbit o b
   end else begin
-    if b <> 0 then o.byte <- o.byte lor (1 lsl o.bit);
-    o.bit <- o.bit - 1
+  if b <> 0 then o.byte <- o.byte lor (1 lsl o.bit);
+  o.bit <- o.bit - 1
   end
 
 let putval o v l =
